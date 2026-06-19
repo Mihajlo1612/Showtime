@@ -17,4 +17,13 @@ interface CastDao {
 
     @Query("SELECT * FROM cast_members WHERE movieImdbId = :movieImdbId ORDER BY displayOrder ASC LIMIT 1")
     suspend fun getLeadActor(movieImdbId: String): CastEntity?
+
+    @Query("SELECT * FROM cast_members WHERE movieImdbId = :movieImdbId ORDER BY displayOrder ASC")
+    suspend fun getCastOnce(movieImdbId: String): List<CastEntity>
+
+    @Query("SELECT DISTINCT movieImdbId FROM cast_members")
+    suspend fun getMovieIdsWithCast(): List<String>
+
+    @Query("SELECT DISTINCT name FROM cast_members")
+    suspend fun getAllActorNames(): List<String>
 }

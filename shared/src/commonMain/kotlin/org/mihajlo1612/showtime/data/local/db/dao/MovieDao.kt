@@ -41,6 +41,13 @@ interface MovieDao {
     """)
     fun observeWatchlist(): Flow<List<MovieWithGenres>>
 
+    @Transaction
+    @Query("SELECT * FROM movies")
+    suspend fun getAllOnce(): List<MovieWithGenres>
+
+    @Query("SELECT COUNT(*) FROM movies WHERE posterPath IS NOT NULL OR backdropPath IS NOT NULL")
+    suspend fun countWithImage(): Int
+
     @Query("SELECT * FROM movies WHERE imdbId IN (:ids)")
     suspend fun getByIds(ids: List<String>): List<MovieEntity>
 }

@@ -20,4 +20,7 @@ interface FavoriteDao {
 
     @Query("DELETE FROM favorites WHERE movieId = :movieId")
     suspend fun deleteById(movieId: String)
+
+    @Query("SELECT movieId FROM favorites")
+    fun observeIds(): kotlinx.coroutines.flow.Flow<List<String>>
 }

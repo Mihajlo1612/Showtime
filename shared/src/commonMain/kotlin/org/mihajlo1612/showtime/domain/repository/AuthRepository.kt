@@ -9,4 +9,5 @@ interface AuthRepository {
     suspend fun logout()
     suspend fun getToken(): String?
     fun observeLoginState(): Flow<Boolean>
+    suspend fun getMe(): User
 }

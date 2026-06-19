@@ -7,6 +7,7 @@ data class Movie(
     val imdbRating: Float?,
     val imdbVotes: Int?,
     val posterPath: String?,
+    val backdropPath: String?,
     val genres: List<Genre>,
     val isFavorite: Boolean,
     val inWatchlist: Boolean,

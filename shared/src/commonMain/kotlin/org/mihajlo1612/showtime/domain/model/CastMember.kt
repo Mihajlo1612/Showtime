@@ -4,6 +4,6 @@ data class CastMember(
     val imdbId: String,
     val name: String,
     val professions: String?,
-    val departmenta: String?,
+    val department: String?,
     val profilePath: String?,
 )

@@ -2,6 +2,7 @@ package org.mihajlo1612.showtime.data.remote.api
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
+import io.ktor.client.request.get
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.http.ContentType
@@ -9,6 +10,7 @@ import io.ktor.http.contentType
 import org.mihajlo1612.showtime.data.remote.model.AuthResponse
 import org.mihajlo1612.showtime.data.remote.model.LoginRequest
 import org.mihajlo1612.showtime.data.remote.model.RegisterRequest
+import org.mihajlo1612.showtime.data.remote.model.RemoteUser
 
 class AuthApi(private val client: HttpClient) {
 
@@ -23,4 +25,6 @@ class AuthApi(private val client: HttpClient) {
             contentType(ContentType.Application.Json)
             setBody(request)
         }.body()
+
+    suspend fun getMe(): RemoteUser = client.get("me").body()
 }

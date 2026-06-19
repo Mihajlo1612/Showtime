@@ -14,6 +14,7 @@ kotlin {
 dependencies {
     implementation(projects.shared)
     implementation(libs.koin.core)
+    implementation(libs.koin.android)
     implementation(libs.compose.ui)
     implementation(libs.compose.foundation)
     implementation(libs.compose.material3)

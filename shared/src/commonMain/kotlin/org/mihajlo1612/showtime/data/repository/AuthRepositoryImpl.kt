@@ -24,7 +24,7 @@ class AuthRepositoryImpl(
     }
 
     override suspend fun register(fullName: String, username: String, password: String): User {
-        val response = authApi.register(RegisterRequest(name = fullName, username = username, password = password))
+        val response = authApi.register(RegisterRequest(fullName = fullName, username = username, password = password))
         authDataStore.saveToken(response.accessToken)
         return User(
             id = response.user.id,
@@ -40,4 +40,9 @@ class AuthRepositoryImpl(
     override suspend fun getToken(): String? = authDataStore.getToken()
 
     override fun observeLoginState() = authDataStore.observeToken().map { it != null }
+
+    override suspend fun getMe(): User {
+        val r = authApi.getMe()
+        return User(id = r.id, username = r.username, fullName = r.fullName)
+    }
 }

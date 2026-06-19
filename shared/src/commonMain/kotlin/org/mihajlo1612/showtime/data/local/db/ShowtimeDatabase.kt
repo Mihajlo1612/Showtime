@@ -1,5 +1,6 @@
 package org.mihajlo1612.showtime.data.local.db
 
+import androidx.room.ConstructedBy
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import org.mihajlo1612.showtime.data.local.db.dao.CastDao
@@ -16,6 +17,7 @@ import org.mihajlo1612.showtime.data.local.db.entity.MovieGenreCrossRef
 import org.mihajlo1612.showtime.data.local.db.entity.QuizSessionEntity
 import org.mihajlo1612.showtime.data.local.db.entity.WatchlistEntity
 
+@ConstructedBy(ShowtimeDatabaseConstructor::class)
 @Database(
     entities = [
         MovieEntity::class,

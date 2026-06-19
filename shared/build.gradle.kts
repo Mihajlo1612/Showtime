@@ -76,6 +76,9 @@ kotlin {
             implementation(libs.sqlite.bundled)
             implementation(libs.datastore.preferences)
             implementation(libs.navigation.compose)
+            implementation(libs.coil.compose)
+            implementation(libs.coil.network.ktor)
+            implementation(libs.compose.ui.backhandler)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
