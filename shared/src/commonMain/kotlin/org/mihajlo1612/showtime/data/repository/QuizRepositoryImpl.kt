@@ -65,7 +65,6 @@ class QuizRepositoryImpl(
             val movie = movies.random()
             if (movie.imdbId in usedMovieIds) continue
 
-            // NOVO:
             val supported = QuizType.entries.filter { movieSupports(movie, it, idsWithCast) }
             if (supported.isEmpty()) continue
 

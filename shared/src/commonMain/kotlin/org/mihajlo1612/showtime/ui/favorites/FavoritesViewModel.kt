@@ -38,19 +38,16 @@ class FavoritesViewModel(
     val sideEffect = _sideEffect.receiveAsFlow()
 
     init {
-        // Observe Room (SSOT)
         viewModelScope.launch {
             favoritesRepository.observeFavorites().collect { movies ->
                 _uiState.update { it.copy(movies = movies, isLoading = false) }
             }
         }
-        // Sync sa serverom pri otvaranju
         viewModelScope.launch {
             try {
                 favoritesRepository.syncFavorites()
             } catch (e: Exception) {
                 _uiState.update { it.copy(isLoading = false) }
-                // offline / greska — Room ostaje izvor (read-only)
             }
         }
     }

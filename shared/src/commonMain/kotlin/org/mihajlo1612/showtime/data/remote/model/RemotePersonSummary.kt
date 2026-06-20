@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 data class RemotePersonSummary(
     val imdbId: String,
     val name: String,
-    val professions: String?,
-    val department: String?,
-    val profilePath: String?,
+    val professions: String? = null,
+    val department: String? = null,
+    val profilePath: String? = null,
 )

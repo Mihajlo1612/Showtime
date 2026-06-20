@@ -110,11 +110,15 @@ class DetailViewModel(
         viewModelScope.launch {
             try {
                 movieRepository.syncMovieDetail(imdbId)
-                movieRepository.syncCast(imdbId)
-                _uiState.update { it.copy(isLoading = false) }
             } catch (e: Exception) {
-                _uiState.update { it.copy(isLoading = false, error = e.message) }
+                _uiState.update { it.copy(error = e.message) }
             }
+            try {
+                movieRepository.syncCast(imdbId)
+            } catch (e: Exception) {
+                println("CAST SYNC FAILED for $imdbId: ${e::class.simpleName}: ${e.message}")
+            }
+            _uiState.update { it.copy(isLoading = false) }
         }
     }
 }
